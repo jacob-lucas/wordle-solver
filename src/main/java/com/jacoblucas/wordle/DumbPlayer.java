@@ -25,6 +25,8 @@ public class DumbPlayer extends Player {
 
     @Override
     public String getNextWord() {
-        return guesses.remove();
+        final String guess = guesses.remove();
+        guesses.add(guess);
+        return guess;
     }
 }
