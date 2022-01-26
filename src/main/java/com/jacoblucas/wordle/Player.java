@@ -8,6 +8,7 @@ import static com.jacoblucas.wordle.ResultCode.RIGHT;
 
 public abstract class Player {
     public static final ResultCode[] FOUND = {RIGHT, RIGHT, RIGHT, RIGHT, RIGHT};
+    protected static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     protected final Game game;
     protected LinkedHashMap<String, ResultCode[]> guessHistory;

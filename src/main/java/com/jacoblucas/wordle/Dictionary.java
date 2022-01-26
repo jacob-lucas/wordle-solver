@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Dictionary {
@@ -20,5 +21,20 @@ public class Dictionary {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static List<String> getMatchingWords(final Pattern pattern, final List<Character> includedLetters) {
+        return WORDS.stream()
+                .filter(w -> pattern.matcher(w).matches())
+                .filter(w -> {
+                    // contains all of the letters marked WRONG
+                    for (final char letter : includedLetters) {
+                        if (w.indexOf(letter) == -1) {
+                            return false;
+                        }
+                    }
+                    return true;
+                })
+                .collect(Collectors.toList());
     }
 }
