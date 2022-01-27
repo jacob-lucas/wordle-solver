@@ -25,7 +25,7 @@ public class SmartPlayer extends Player {
             return "SMART";
         }
 
-        // Prune letters from the guess order, and identify any wrong letters
+        // Identify any invalid / wrong letters
         final List<Character> availableLetters = GuessHistoryAnalysis.getAvailableLetters(guessHistory);
         final List<Character> wrongLetters = GuessHistoryAnalysis.getLetters(guessHistory, WRONG);
 
