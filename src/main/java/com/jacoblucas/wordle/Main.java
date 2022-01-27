@@ -17,25 +17,46 @@ public class Main {
         final Map<String, Map<Integer, Integer>> resultsByPlayer = new HashMap<>();
         Arrays.stream(players).forEach(p -> resultsByPlayer.put(p.getName(), new HashMap<>()));
 
-        for (int i = 0; i < GAMES; i++) {
+        IntStream.range(0, GAMES).forEach(i -> {
             game.newGame();
-            for (final Player player : players) {
+            Arrays.stream(players).forEach(player -> {
                 final int guesses = player.play();
                 final Map<Integer, Integer> results = resultsByPlayer.get(player.getName());
                 results.put(guesses, results.getOrDefault(guesses, 0) + 1);
                 resultsByPlayer.put(player.getName(), results);
-            }
-        }
+            });
+        });
 
-        Arrays.stream(players).forEach(player -> {
+        Player winner = null;
+        int bestScore = 0;
+        for (final Player player : players) {
             final Map<Integer, Integer> results = resultsByPlayer.get(player.getName());
             System.out.println(player.getName() + " guess distribution over " + GAMES + " games:");
             IntStream.range(1, 7).forEach(i -> System.out.println(i + ": " + results.getOrDefault(i,0) + " (" + pct(results.getOrDefault(i,0), GAMES) + "%)"));
             System.out.println("X: " + results.get(-1) + " (" + pct(results.get(-1), GAMES) + "%)");
-        });
+
+            int score = score(results);
+            if (score > bestScore) {
+                winner = player;
+                bestScore = score;
+            }
+            System.out.println("Score = " + score + "\n");
+        }
+
+        System.out.println("The winner is " + winner.getName() + " with a score of " + bestScore);
     }
 
     private static double pct(final int i, final int total) {
         return ((double) i) * 100 / total;
     }
+
+    private static int score(final Map<Integer, Integer> results) {
+        int score = 0;
+        int maxPoints = 6;
+        for (int i = 1; i <= maxPoints; i++) {
+            score += (maxPoints - i + 1) * results.getOrDefault(i, 0);
+        }
+        return score;
+    }
+
 }
