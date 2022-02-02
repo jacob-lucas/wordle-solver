@@ -16,6 +16,11 @@ public class SmartPlayer extends Player {
         this.startWord = startWord;
     }
 
+    public SmartPlayer(final Game game, final String startWord, final boolean hardMode) {
+        super(game, hardMode);
+        this.startWord = startWord;
+    }
+
     @Override
     public String getName() {
         return "SmartPlayer-" + startWord;
