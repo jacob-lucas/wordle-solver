@@ -11,8 +11,8 @@ import static com.jacoblucas.wordle.Dictionary.WORDS;
 public class MinimiseChoicesPlayer extends SmartPlayer {
     final Map<Character, Long> charFrequencyMap = new HashMap<>();
 
-    public MinimiseChoicesPlayer(Game game) {
-        super(game, "RAISE");
+    public MinimiseChoicesPlayer(final Game game, final boolean hardMode) {
+        super(game, "RAISE", hardMode);
         WORDS.forEach(w ->
                 w.chars().forEach(ch ->
                         charFrequencyMap.put((char)ch, charFrequencyMap.getOrDefault((char)ch, 0L) + 1)));

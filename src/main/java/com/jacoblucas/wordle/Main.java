@@ -12,10 +12,10 @@ public class Main {
     public static void main(String[] args) {
         final Game game = new Game();
         play(game,
-                new SmartPlayer(game, "SMART"),
-                new TwoStartWordsPlayer(game),
                 new DumbPlayer(game),
-                new MinimiseChoicesPlayer(game)
+                new TwoStartWordsPlayer(game),
+                new SmartPlayer(game, "SMART", true),
+                new MinimiseChoicesPlayer(game, true)
         );
     }
 
@@ -39,7 +39,7 @@ public class Main {
         final DecimalFormat decimalFormat = new DecimalFormat("##.00");
         for (final Player player : players) {
             final Map<Integer, Integer> results = resultsByPlayer.get(player.getName());
-            System.out.println(player.getName() + " guess distribution over " + GAMES + " games:");
+            System.out.println(player.getName() + " (hard mode = " + player.hardMode + ") guess distribution over " + GAMES + " games:");
             IntStream.range(1, 7).forEach(i -> System.out.println(i + ": " + results.getOrDefault(i,0) + " (" + decimalFormat.format(pct(results.getOrDefault(i,0), GAMES)) + "%)"));
             System.out.println("X: " + results.get(-1) + " (" + decimalFormat.format(pct(results.get(-1), GAMES)) + "%)");
 
