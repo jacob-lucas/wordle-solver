@@ -4,7 +4,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import static com.jacoblucas.wordle.Dictionary.WORDS;
 
@@ -29,13 +28,11 @@ public class MinimiseChoicesPlayer extends SmartPlayer {
             return startWord;
         } else {
             final List<Character> availableLetters = GuessHistoryAnalysis.getAvailableLetters(guessHistory);
-            final List<String> matchingWords = getOptions();
 
-            final List<String> sorted = matchingWords.stream()
-                    .sorted(Comparator.comparing(w -> -1 * score(w, availableLetters)))
-                    .collect(Collectors.toList());
-
-            return sorted.get(0);
+            // Pick the word that uses the most common remaining letters to minimise future choices
+            return getOptions().stream()
+                    .max(Comparator.comparing(w -> score(w, availableLetters)))
+                    .get();
         }
     }
 
