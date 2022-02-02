@@ -1,16 +1,22 @@
 package com.jacoblucas.wordle;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.IntStream;
 
 public class Main {
-    private static final int GAMES = 10000;
+    private static final int GAMES = Dictionary.WORDS.size();
 
     public static void main(String[] args) {
         final Game game = new Game();
-        play(game, new SmartPlayer(game), new TwoStartWordsPlayer(game));
+        play(game,
+                new SmartPlayer(game, "SMART"),
+                new TwoStartWordsPlayer(game),
+                new DumbPlayer(game),
+                new MinimiseChoicesPlayer(game)
+        );
     }
 
     public static void play(final Game game, final Player ...players) {
@@ -19,6 +25,7 @@ public class Main {
 
         IntStream.range(0, GAMES).forEach(i -> {
             game.newGame();
+            game.setWord(Dictionary.WORDS.get(i));
             Arrays.stream(players).forEach(player -> {
                 final int guesses = player.play();
                 final Map<Integer, Integer> results = resultsByPlayer.get(player.getName());
@@ -29,11 +36,12 @@ public class Main {
 
         Player winner = null;
         int bestScore = 0;
+        final DecimalFormat decimalFormat = new DecimalFormat("##.00");
         for (final Player player : players) {
             final Map<Integer, Integer> results = resultsByPlayer.get(player.getName());
             System.out.println(player.getName() + " guess distribution over " + GAMES + " games:");
-            IntStream.range(1, 7).forEach(i -> System.out.println(i + ": " + results.getOrDefault(i,0) + " (" + pct(results.getOrDefault(i,0), GAMES) + "%)"));
-            System.out.println("X: " + results.get(-1) + " (" + pct(results.get(-1), GAMES) + "%)");
+            IntStream.range(1, 7).forEach(i -> System.out.println(i + ": " + results.getOrDefault(i,0) + " (" + decimalFormat.format(pct(results.getOrDefault(i,0), GAMES)) + "%)"));
+            System.out.println("X: " + results.get(-1) + " (" + decimalFormat.format(pct(results.get(-1), GAMES)) + "%)");
 
             int score = score(results);
             if (score > bestScore) {

@@ -9,27 +9,36 @@ import static com.jacoblucas.wordle.Game.WORD_LENGTH;
 import static com.jacoblucas.wordle.ResultCode.WRONG;
 
 public class SmartPlayer extends Player {
-    public SmartPlayer(Game game) {
+    protected String startWord;
+
+    public SmartPlayer(Game game, final String startWord) {
         super(game);
+        this.startWord = startWord;
     }
 
     @Override
     public String getName() {
-        return "SmartPlayer";
+        return "SmartPlayer-" + startWord;
     }
 
     @Override
     public String getNextWord() {
         if (guessHistory.isEmpty()) {
-            // Start with a "smart" guess :)
-            return "SMART";
+            return startWord;
         }
 
-        // Identify any invalid / wrong letters
+        // Any guess will do
+        return getOptions().get(0);
+    }
+
+    protected List<String> getOptions() {
         final List<Character> availableLetters = GuessHistoryAnalysis.getAvailableLetters(guessHistory);
         final List<Character> wrongLetters = GuessHistoryAnalysis.getLetters(guessHistory, WRONG);
+        final Pattern pattern = getWordPatternForHistory(availableLetters);
+        return Dictionary.getMatchingWords(pattern, wrongLetters);
+    }
 
-        // Identify any letters in the right location
+    private Pattern getWordPatternForHistory(final List<Character> availableLetters) {
         String[] patternArr = new String[5];
         for (Map.Entry<String, ResultCode[]> entry : guessHistory.entrySet()) {
             String word = entry.getKey();
@@ -49,8 +58,6 @@ public class SmartPlayer extends Player {
             }
         }
 
-        final Pattern pattern = Pattern.compile(String.join("", patternArr));
-        final List<String> options = Dictionary.getMatchingWords(pattern, wrongLetters);
-        return options.get(0);
+        return Pattern.compile(String.join("", patternArr));
     }
 }

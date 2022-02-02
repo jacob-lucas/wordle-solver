@@ -24,7 +24,7 @@ public class Game {
         setWord(WORDS.get(random.nextInt(WORDS.size())));
     }
 
-    protected void setWord(final String word) {
+    public void setWord(final String word) {
         this.word = word;
     }
 
