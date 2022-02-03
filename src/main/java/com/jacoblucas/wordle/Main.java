@@ -14,6 +14,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.IntStream;
 
+import static com.jacoblucas.wordle.game.Game.MAX_GUESSES;
+
 public class Main {
     private static final int GAMES = Dictionary.WORDS.size();
 
@@ -68,9 +70,8 @@ public class Main {
 
     private static int score(final Map<Integer, Integer> results) {
         int score = 0;
-        int maxPoints = 6;
-        for (int i = 1; i <= maxPoints; i++) {
-            score += (maxPoints - i + 1) * results.getOrDefault(i, 0);
+        for (int i = 1; i <= MAX_GUESSES; i++) {
+            score += (MAX_GUESSES - i + 1) * results.getOrDefault(i, 0);
         }
         return score;
     }
