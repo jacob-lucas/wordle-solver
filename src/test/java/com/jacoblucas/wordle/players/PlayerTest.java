@@ -1,5 +1,6 @@
-package com.jacoblucas.wordle;
+package com.jacoblucas.wordle.players;
 
+import com.jacoblucas.wordle.game.Game;
 import org.junit.Before;
 import org.junit.Test;
 

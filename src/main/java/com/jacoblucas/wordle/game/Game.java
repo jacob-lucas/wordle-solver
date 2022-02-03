@@ -1,11 +1,11 @@
-package com.jacoblucas.wordle;
+package com.jacoblucas.wordle.game;
 
 import java.util.Random;
 
-import static com.jacoblucas.wordle.Dictionary.WORDS;
-import static com.jacoblucas.wordle.ResultCode.NEVER;
-import static com.jacoblucas.wordle.ResultCode.RIGHT;
-import static com.jacoblucas.wordle.ResultCode.WRONG;
+import static com.jacoblucas.wordle.game.Dictionary.WORDS;
+import static com.jacoblucas.wordle.game.ResultCode.NEVER;
+import static com.jacoblucas.wordle.game.ResultCode.RIGHT;
+import static com.jacoblucas.wordle.game.ResultCode.WRONG;
 
 public class Game {
     public static final int MAX_GUESSES = 6;

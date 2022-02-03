@@ -1,12 +1,17 @@
-package com.jacoblucas.wordle;
+package com.jacoblucas.wordle.players;
+
+import com.jacoblucas.wordle.game.Dictionary;
+import com.jacoblucas.wordle.game.Game;
+import com.jacoblucas.wordle.game.ResultCode;
+import com.jacoblucas.wordle.utils.GuessHistoryAnalysis;
 
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import static com.jacoblucas.wordle.Game.WORD_LENGTH;
-import static com.jacoblucas.wordle.ResultCode.WRONG;
+import static com.jacoblucas.wordle.game.Game.WORD_LENGTH;
+import static com.jacoblucas.wordle.game.ResultCode.WRONG;
 
 public class SmartPlayer extends Player {
     protected String startWord;

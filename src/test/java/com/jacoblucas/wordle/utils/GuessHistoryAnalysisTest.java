@@ -1,13 +1,14 @@
-package com.jacoblucas.wordle;
+package com.jacoblucas.wordle.utils;
 
+import com.jacoblucas.wordle.game.ResultCode;
 import org.junit.Test;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import static com.jacoblucas.wordle.ResultCode.NEVER;
-import static com.jacoblucas.wordle.ResultCode.RIGHT;
-import static com.jacoblucas.wordle.ResultCode.WRONG;
+import static com.jacoblucas.wordle.game.ResultCode.NEVER;
+import static com.jacoblucas.wordle.game.ResultCode.RIGHT;
+import static com.jacoblucas.wordle.game.ResultCode.WRONG;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.junit.Assert.assertThat;
 

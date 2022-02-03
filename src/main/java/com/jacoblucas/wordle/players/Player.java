@@ -1,4 +1,7 @@
-package com.jacoblucas.wordle;
+package com.jacoblucas.wordle.players;
+
+import com.jacoblucas.wordle.game.Game;
+import com.jacoblucas.wordle.game.ResultCode;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -6,13 +9,13 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.BiConsumer;
 
-import static com.jacoblucas.wordle.Game.MAX_GUESSES;
-import static com.jacoblucas.wordle.ResultCode.RIGHT;
-import static com.jacoblucas.wordle.ResultCode.WRONG;
+import static com.jacoblucas.wordle.game.Game.MAX_GUESSES;
+import static com.jacoblucas.wordle.game.ResultCode.RIGHT;
+import static com.jacoblucas.wordle.game.ResultCode.WRONG;
 
 public abstract class Player {
     public static final ResultCode[] FOUND = {RIGHT, RIGHT, RIGHT, RIGHT, RIGHT};
-    protected static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    public static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     protected final Game game;
     protected final boolean hardMode;
@@ -31,6 +34,10 @@ public abstract class Player {
     public abstract String getName();
 
     public abstract String getNextWord();
+
+    public boolean getHardMode() {
+        return hardMode;
+    }
 
     public int play() {
         guessHistory = new LinkedHashMap<>();

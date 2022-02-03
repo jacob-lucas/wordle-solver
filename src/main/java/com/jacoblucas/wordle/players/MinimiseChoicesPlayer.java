@@ -1,11 +1,14 @@
-package com.jacoblucas.wordle;
+package com.jacoblucas.wordle.players;
+
+import com.jacoblucas.wordle.game.Game;
+import com.jacoblucas.wordle.utils.GuessHistoryAnalysis;
 
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.jacoblucas.wordle.Dictionary.WORDS;
+import static com.jacoblucas.wordle.game.Dictionary.WORDS;
 
 public class MinimiseChoicesPlayer extends SmartPlayer {
     final Map<Character, Long> charFrequencyMap = new HashMap<>();

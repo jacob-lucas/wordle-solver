@@ -1,4 +1,4 @@
-package com.jacoblucas.wordle;
+package com.jacoblucas.wordle.game;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

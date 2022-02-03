@@ -1,14 +1,14 @@
-package com.jacoblucas.wordle;
+package com.jacoblucas.wordle.game;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
 
-import static com.jacoblucas.wordle.Player.FOUND;
-import static com.jacoblucas.wordle.ResultCode.NEVER;
-import static com.jacoblucas.wordle.ResultCode.RIGHT;
-import static com.jacoblucas.wordle.ResultCode.WRONG;
+import static com.jacoblucas.wordle.game.ResultCode.NEVER;
+import static com.jacoblucas.wordle.game.ResultCode.RIGHT;
+import static com.jacoblucas.wordle.game.ResultCode.WRONG;
+import static com.jacoblucas.wordle.players.Player.FOUND;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 

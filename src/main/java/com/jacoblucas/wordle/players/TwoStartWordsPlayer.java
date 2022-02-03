@@ -1,4 +1,6 @@
-package com.jacoblucas.wordle;
+package com.jacoblucas.wordle.players;
+
+import com.jacoblucas.wordle.game.Game;
 
 public class TwoStartWordsPlayer extends SmartPlayer {
     public TwoStartWordsPlayer(final Game game) {

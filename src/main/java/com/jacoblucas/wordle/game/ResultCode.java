@@ -1,4 +1,4 @@
-package com.jacoblucas.wordle;
+package com.jacoblucas.wordle.game;
 
 public enum ResultCode {
     // The letter is not in the word in any spot.

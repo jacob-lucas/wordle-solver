@@ -1,6 +1,7 @@
-package com.jacoblucas.wordle;
+package com.jacoblucas.wordle.utils;
 
 import com.google.common.collect.Sets;
+import com.jacoblucas.wordle.game.ResultCode;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -8,8 +9,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.jacoblucas.wordle.Game.WORD_LENGTH;
-import static com.jacoblucas.wordle.Player.ALPHABET;
+import static com.jacoblucas.wordle.game.Game.WORD_LENGTH;
+import static com.jacoblucas.wordle.players.Player.ALPHABET;
 
 public class GuessHistoryAnalysis {
 
